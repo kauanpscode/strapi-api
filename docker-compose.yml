@@ -1,0 +1,13 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: postgres_strapi_blog
+    environment:
+      POSTGRES_PASSWORD: senha
+      POSTGRES_DB: postgres_strapi_blog
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    volumes:
+      - ~/.PostgressData/postgresonly/blog_strapi_api:/var/lib/postgresql/data/pgdata
+    restart: always
