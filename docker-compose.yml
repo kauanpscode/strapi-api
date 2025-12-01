@@ -1,10 +1,10 @@
 services:
   postgres:
     image: postgres:16
-    container_name: postgres_strapi_blog
+    container_name: blog-strapi
     environment:
       POSTGRES_PASSWORD: senha
-      POSTGRES_DB: postgres_strapi_blog
+      POSTGRES_DB: blog-strapi
       PGDATA: /var/lib/postgresql/data/pgdata
     ports:
       - "5432:5432"
