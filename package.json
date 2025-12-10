@@ -32,5 +32,10 @@
   "strapi": {
     "uuid": "ced47976-9b8b-4415-8752-3c9f8a195c11",
     "installId": "c1718900e133c313be1f99303abdfaf1ca717cd722397f5fcf142cba62a9af29"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "prettier": "^3.7.4"
   }
 }

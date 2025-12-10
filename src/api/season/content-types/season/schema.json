@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "seasons",
+  "info": {
+    "singularName": "season",
+    "pluralName": "seasons",
+    "displayName": "Seasons"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "season": {
+      "type": "integer"
+    },
+    "episodes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::episode.episode"
+    }
+  }
+}

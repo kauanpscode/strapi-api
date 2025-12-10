@@ -467,12 +467,46 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
-  collectionName: 'authors';
+export interface ApiEpisodeEpisode extends Struct.CollectionTypeSchema {
+  collectionName: 'episodes';
   info: {
-    displayName: 'authors';
-    pluralName: 'authors';
-    singularName: 'author';
+    displayName: 'Episodes';
+    pluralName: 'episodes';
+    singularName: 'episode';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.RichText;
+    episode_number: Schema.Attribute.Integer;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::episode.episode'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    season: Schema.Attribute.Relation<'oneToOne', 'api::season.season'>;
+    thumbnail: Schema.Attribute.Media<'images' | 'files'>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    video: Schema.Attribute.Media<'files' | 'videos' | 'images'> &
+      Schema.Attribute.Required;
+  };
+}
+
+export interface ApiGenreGenre extends Struct.CollectionTypeSchema {
+  collectionName: 'genres';
+  info: {
+    displayName: 'Genres';
+    pluralName: 'genres';
+    singularName: 'genre';
   };
   options: {
     draftAndPublish: true;
@@ -482,13 +516,9 @@ export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::author.author'
-    > &
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::genre.genre'> &
       Schema.Attribute.Private;
     name: Schema.Attribute.String;
-    posts: Schema.Attribute.Relation<'oneToMany', 'api::post.post'>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -496,62 +526,98 @@ export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiCategorieCategorie extends Struct.CollectionTypeSchema {
-  collectionName: 'categories';
+export interface ApiMovieMovie extends Struct.CollectionTypeSchema {
+  collectionName: 'movies';
   info: {
-    displayName: 'categories';
-    pluralName: 'categories';
-    singularName: 'categorie';
+    displayName: 'Movies';
+    pluralName: 'movies';
+    singularName: 'movie';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::categorie.categorie'
-    > &
-      Schema.Attribute.Private;
-    name: Schema.Attribute.String;
-    posts: Schema.Attribute.Relation<'oneToMany', 'api::post.post'>;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiPostPost extends Struct.CollectionTypeSchema {
-  collectionName: 'posts';
-  info: {
-    displayName: 'posts';
-    pluralName: 'posts';
-    singularName: 'post';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    author: Schema.Attribute.Relation<'manyToOne', 'api::author.author'>;
-    category: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::categorie.categorie'
-    >;
-    content: Schema.Attribute.RichText & Schema.Attribute.Required;
-    cover: Schema.Attribute.Media<'images' | 'files'> &
+    background: Schema.Attribute.Media<'images' | 'files'> &
       Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    description: Schema.Attribute.RichText;
+    duration: Schema.Attribute.Decimal;
+    genre: Schema.Attribute.Relation<'oneToOne', 'api::genre.genre'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::post.post'> &
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::movie.movie'> &
+      Schema.Attribute.Private;
+    poster: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    video: Schema.Attribute.Media<'files' | 'videos' | 'images'> &
+      Schema.Attribute.Required;
+    year: Schema.Attribute.Integer & Schema.Attribute.Required;
+  };
+}
+
+export interface ApiSeasonSeason extends Struct.CollectionTypeSchema {
+  collectionName: 'seasons';
+  info: {
+    displayName: 'Seasons';
+    pluralName: 'seasons';
+    singularName: 'season';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    episodes: Schema.Attribute.Relation<'oneToMany', 'api::episode.episode'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::season.season'
+    > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
+    season: Schema.Attribute.Integer;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiTvSerieTvSerie extends Struct.CollectionTypeSchema {
+  collectionName: 'tv_series';
+  info: {
+    displayName: 'TV Series';
+    pluralName: 'tv-series';
+    singularName: 'tv-serie';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    background: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.RichText;
+    genre: Schema.Attribute.Relation<'oneToOne', 'api::genre.genre'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::tv-serie.tv-serie'
+    > &
+      Schema.Attribute.Private;
+    poster: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    seasons: Schema.Attribute.Relation<'oneToMany', 'api::season.season'>;
     title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1070,9 +1136,11 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
-      'api::author.author': ApiAuthorAuthor;
-      'api::categorie.categorie': ApiCategorieCategorie;
-      'api::post.post': ApiPostPost;
+      'api::episode.episode': ApiEpisodeEpisode;
+      'api::genre.genre': ApiGenreGenre;
+      'api::movie.movie': ApiMovieMovie;
+      'api::season.season': ApiSeasonSeason;
+      'api::tv-serie.tv-serie': ApiTvSerieTvSerie;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

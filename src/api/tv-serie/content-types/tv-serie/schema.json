@@ -1,0 +1,50 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tv_series",
+  "info": {
+    "singularName": "tv-serie",
+    "pluralName": "tv-series",
+    "displayName": "TV Series"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "poster": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "background": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "genre": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::genre.genre"
+    },
+    "seasons": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::season.season"
+    }
+  }
+}
