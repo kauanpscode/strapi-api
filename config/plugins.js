@@ -1,15 +1,18 @@
 module.exports = ({ env }) => ({
   upload: {
     config: {
-      provider: 'cloudinary',
+      provider: '@strapi/provider-upload-aws-s3',
       providerOptions: {
-        cloud_name: env('CLOUDINARY_NAME'),
-        api_key: env('CLOUDINARY_KEY'),
-        api_secret: env('CLOUDINARY_SECRET'),
-      },
-      actionOptions: {
-        upload: {},
-        delete: {},
+        accessKeyId: env('R2_ACCESS_KEY_ID'),
+        secretAccessKey: env('R2_SECRET_ACCESS_KEY'),
+        endpoint: env('R2_ENDPOINT'),
+        region: 'auto',
+        params: {
+          Bucket: env('R2_BUCKET'),
+        },
+        s3Options: {
+          signatureVersion: 'v4',
+        },
       },
     },
   },
