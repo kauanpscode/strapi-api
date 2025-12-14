@@ -1,17 +1,16 @@
 module.exports = ({ env }) => ({
   upload: {
     config: {
-      provider: '@strapi/provider-upload-aws-s3',
+      provider: 'strapi-provider-cloudflare-r2',
       providerOptions: {
         accessKeyId: env('R2_ACCESS_KEY_ID'),
         secretAccessKey: env('R2_SECRET_ACCESS_KEY'),
+        region: 'us-east-1',
         endpoint: env('R2_ENDPOINT'),
-        region: 'auto',
+        signatureVersion: 'v4',
+        forcePathStyle: true,
         params: {
           Bucket: env('R2_BUCKET'),
-        },
-        s3Options: {
-          signatureVersion: 'v4',
         },
       },
     },

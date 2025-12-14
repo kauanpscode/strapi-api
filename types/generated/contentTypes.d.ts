@@ -490,7 +490,6 @@ export interface ApiEpisodeEpisode extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    season: Schema.Attribute.Relation<'oneToOne', 'api::season.season'>;
     thumbnail: Schema.Attribute.Media<'images' | 'files'>;
     title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
