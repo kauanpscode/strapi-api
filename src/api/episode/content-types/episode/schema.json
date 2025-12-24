@@ -21,16 +21,6 @@
     "description": {
       "type": "richtext"
     },
-    "video": {
-      "type": "media",
-      "multiple": false,
-      "required": true,
-      "allowedTypes": [
-        "files",
-        "videos",
-        "images"
-      ]
-    },
     "thumbnail": {
       "type": "media",
       "multiple": false,
@@ -38,6 +28,9 @@
         "images",
         "files"
       ]
+    },
+    "video_url": {
+      "type": "string"
     }
   }
 }
