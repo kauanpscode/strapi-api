@@ -546,6 +546,7 @@ export interface ApiMovieMovie extends Struct.CollectionTypeSchema {
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::movie.movie'> &
       Schema.Attribute.Private;
+    movie_url: Schema.Attribute.String;
     poster: Schema.Attribute.Media<'images' | 'files'> &
       Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
@@ -553,8 +554,6 @@ export interface ApiMovieMovie extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    video: Schema.Attribute.Media<'files' | 'videos' | 'images'> &
-      Schema.Attribute.Required;
     year: Schema.Attribute.Integer & Schema.Attribute.Required;
   };
 }
