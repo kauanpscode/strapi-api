@@ -36,16 +36,6 @@
         "files"
       ]
     },
-    "video": {
-      "type": "media",
-      "multiple": false,
-      "required": true,
-      "allowedTypes": [
-        "files",
-        "videos",
-        "images"
-      ]
-    },
     "year": {
       "type": "integer",
       "required": true
@@ -57,6 +47,9 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::genre.genre"
+    },
+    "movie_url": {
+      "type": "string"
     }
   }
 }
