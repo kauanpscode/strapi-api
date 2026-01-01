@@ -567,7 +567,7 @@ export interface ApiTvSerieTvSerie extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.RichText;
-    genre: Schema.Attribute.Relation<'oneToOne', 'api::genre.genre'>;
+    genres: Schema.Attribute.Relation<'oneToMany', 'api::genre.genre'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
