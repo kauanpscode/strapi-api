@@ -9,7 +9,8 @@ module.exports = ({ env }) => ({
         endpoint: env('R2_ENDPOINT'),
         signatureVersion: 'v4',
         forcePathStyle: true,
-        cloudflarePublicAccessUrl: env('R2_PUBLIC_URL'),
+        cloudflarePublicAccessUrl: env('R2_PUBLIC_URL'), // Para o plugin
+        baseUrl: env('R2_PUBLIC_URL'),                   // Para o Strapi
         params: {
           Bucket: env('R2_BUCKET'),
         },
