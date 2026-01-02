@@ -9,6 +9,7 @@ module.exports = ({ env }) => ({
         endpoint: env('R2_ENDPOINT'),
         signatureVersion: 'v4',
         forcePathStyle: true,
+        publicUrl: env('R2_PUBLIC_URL'),
         params: {
           Bucket: env('R2_BUCKET'),
         },
